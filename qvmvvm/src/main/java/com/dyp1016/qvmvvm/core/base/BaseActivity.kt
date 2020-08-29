@@ -39,13 +39,14 @@ abstract class BaseActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(window.decorView.windowToken, 0)
     }
 
-    fun <T : Activity> startActivity(
+    inline fun <T : Activity> startActivity(
         clazz: Class<T>,
         code: Int? = null,
-        callback: ((intent: Intent) -> Unit)? = null
+        block: Intent.() -> Unit = {}
     ) {
-        val intent = createIntent(clazz)
-        callback?.invoke(intent)
+        val intent = Intent(this, clazz)
+        initIntent(intent)
+        intent.block()
         if (code != null) {
             startActivityForResult(intent, code)
         } else {
@@ -53,7 +54,10 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    open fun <T> createIntent(clazz: Class<T>): Intent {
-        return Intent(this, clazz)
+    /**
+     * 初始化Intent, 可以在子类中传入通用的值
+     */
+    open fun initIntent(intent: Intent) {
+
     }
 }

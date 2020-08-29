@@ -1,18 +1,7 @@
 package com.dyp1016.okr.public.base
 
-import android.app.Application
-import android.content.Context
-import kotlin.properties.Delegates
+import com.dyp1016.qvmvvm.core.base.BaseApp
 
-class App : Application() {
+class App : BaseApp() {
 
-    companion object {
-        var context: Context by Delegates.notNull()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-
-        context = applicationContext
-    }
 }
