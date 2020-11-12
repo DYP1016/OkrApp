@@ -8,10 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- * Created by luyao
- * on 2019/5/31 16:06
- */
 open class BaseViewModel : ViewModel() {
 
     open class UiState<T>(
@@ -35,9 +31,7 @@ open class BaseViewModel : ViewModel() {
 
 
     fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
-a
         viewModelScope.launch { block() }
-
     }
 
     suspend fun <T> launchOnIO(block: suspend CoroutineScope.() -> T) {

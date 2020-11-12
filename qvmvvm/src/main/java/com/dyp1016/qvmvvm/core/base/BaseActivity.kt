@@ -3,7 +3,6 @@ package com.dyp1016.qvmvvm.core.base
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import org.greenrobot.eventbus.EventBus
 
@@ -32,11 +31,6 @@ abstract class BaseActivity : AppCompatActivity() {
         if (useEventBus()) {
             EventBus.getDefault().unregister(this)
         }
-    }
-
-    protected open fun hideSoftInput() {
-        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(window.decorView.windowToken, 0)
     }
 
     inline fun <T : Activity> startActivity(
