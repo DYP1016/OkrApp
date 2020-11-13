@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.collect
 open class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
     var userData: MutableLiveData<User> = MutableLiveData()
 
-    private val _uiState = MutableLiveData<UiState<Int>>()
-    val uiState: MutableLiveData<UiState<Int>> get() = _uiState
+    private val _uiState = MutableLiveData<UiState>()
+    val uiState: MutableLiveData<UiState> get() = _uiState
 
     init {
         refresh()

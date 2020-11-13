@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 
-class MainRepository : BaseRepository() {
+class TestNetworkRequestRepository : BaseRepository() {
 
 
     @ExperimentalCoroutinesApi
