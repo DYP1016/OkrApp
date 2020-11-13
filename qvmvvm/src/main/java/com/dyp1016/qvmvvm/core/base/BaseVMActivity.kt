@@ -2,11 +2,10 @@ package com.dyp1016.qvmvvm.core.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseVMActivity : AppCompatActivity() {
+abstract class BaseVMActivity : BaseCommonActivity() {
 
     protected inline fun <reified T : ViewDataBinding> binding(
         @LayoutRes resId: Int
