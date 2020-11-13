@@ -1,6 +1,5 @@
 package com.dyp1016.qvmvvm.core.base
 
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +8,7 @@ import org.greenrobot.eventbus.EventBus
 
 abstract class BaseCommonActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
+    protected lateinit var context: AppCompatActivity
 
     open fun showOrHideLoading(isShow: Boolean) {
         if (isShow) {
@@ -34,6 +34,7 @@ abstract class BaseCommonActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        context = this
         if (useEventBus()) {
             EventBus.getDefault().register(this)
         }
@@ -47,18 +48,24 @@ abstract class BaseCommonActivity : AppCompatActivity() {
         }
     }
 
-    inline fun <T : Activity> startActivity(
-        clazz: Class<T>,
+    inline fun startActivity(
+        clazz: Class<*>,
         code: Int? = null,
         block: Intent.() -> Unit = {}
     ) {
         val intent = Intent(this, clazz)
         initIntent(intent)
         intent.block()
-        if (code != null) {
-            startActivityForResult(intent, code)
-        } else {
-            startActivity(intent)
+
+        try {
+            if (code != null) {
+                startActivityForResult(intent, code)
+            } else {
+                startActivity(intent)
+            }
+        } catch (e: Exception) {
+            logE(e)
+            showToastL(e.toString())
         }
     }
 

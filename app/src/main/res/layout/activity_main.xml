@@ -40,5 +40,13 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:text="20" />
 
+        <Button
+            android:id="@+id/main_bt_test"
+            android:text="@string/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

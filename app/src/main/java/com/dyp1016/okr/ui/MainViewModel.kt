@@ -7,7 +7,7 @@ import com.dyp1016.qvmvvm.core.base.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
-open class MainViewModel(val repository: MainRepository) : BaseViewModel() {
+open class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
     var userData: MutableLiveData<User> = MutableLiveData()
 
     private val _uiState = MutableLiveData<UiState<Int>>()

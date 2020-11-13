@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dyp1016.okr">
+    package="com.dyp1016.okr" >
 
     <application
         android:name=".public.base.App"
@@ -9,10 +9,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
+        <activity android:name="com.dyp1016.test.ui.TestNetworkRequestActivity" >
+        </activity>
+        <activity android:name="com.dyp1016.test.ui.TestIndexActivity" />
         <activity
             android:name=".ui.StartActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
