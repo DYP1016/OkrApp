@@ -34,7 +34,7 @@ class TestNetworkRequestActivity : BaseVMActivity() {
         test_network_lv_list.setOnItemClickListener { _, _, position, _ ->
             when (item[position]) {
                 "网络请求测试1" -> {
-
+                    viewModel.test1()
                 }
                 "网络请求测试2" -> {
 

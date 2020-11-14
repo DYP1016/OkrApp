@@ -29,6 +29,15 @@ android {
             enabled = true
         }
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -43,4 +52,9 @@ dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt "com.android.databinding:compiler:$plugin_version"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0'
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }
