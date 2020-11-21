@@ -11,8 +11,7 @@ import kotlinx.coroutines.coroutineScope
 open class BaseRepository {
 
     suspend fun <T : Any> safeApiCall(
-        call: suspend () -> Result<T>,
-        errorMessage: String
+        call: suspend () -> Result<T>
     ): Result<T> {
         return try {
             call()

@@ -37,10 +37,10 @@ class TestNetworkRequestActivity : BaseVMActivity() {
                     viewModel.test1()
                 }
                 "网络请求测试2" -> {
-
+                    viewModel.test2()
                 }
                 "网络请求测试3" -> {
-
+                    viewModel.test3()
                 }
                 "网络请求测试4" -> {
 

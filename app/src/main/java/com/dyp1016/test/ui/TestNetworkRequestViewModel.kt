@@ -3,6 +3,7 @@ package com.dyp1016.test.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dyp1016.qvmvvm.core.base.BaseViewModel
+import com.dyp1016.qvmvvm.core.base.QvResult
 import com.dyp1016.test.repository.TestNetworkRequestRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,16 +24,33 @@ class TestNetworkRequestViewModel(private val repository: TestNetworkRequestRepo
         emitUiState(UiModel(isLoading = true))
         viewModelScope.launch(Dispatchers.Main) {
             val ret = repository.test1(1)
+            dealWithResult(ret)
+        }
+    }
 
-            if (ret.retSuccess()) {
-                emitUiState(UiModel(isLoading = false, result = ret.result.toString()))
-            } else {
-                emitUiState(UiModel(isLoading = false, isError = ret.code))
-            }
+    fun test2() {
+        emitUiState(UiModel(isLoading = true))
+        repository.test2 {
+            dealWithResult(it)
+        }
+    }
+
+    fun test3() {
+        emitUiState(UiModel(isLoading = true))
+        viewModelScope.launch {
+            dealWithResult(repository.test3())
         }
     }
 
     private fun emitUiState(state: UiModel) {
         _uiModel.postValue(state)
+    }
+
+    private fun <T> dealWithResult(result: QvResult<T>) {
+        if (result.retSuccess()) {
+            emitUiState(UiModel(isLoading = false, result = result.result.toString()))
+        } else {
+            emitUiState(UiModel(isLoading = false, isError = result.code))
+        }
     }
 }

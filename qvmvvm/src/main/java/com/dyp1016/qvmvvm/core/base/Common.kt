@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 
 const val RET_SUCCESS = 0
+const val RET_FAIL = -2
+
 private val handler = Handler(Looper.getMainLooper())
 
 fun logD(info: String) {

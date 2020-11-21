@@ -2,6 +2,8 @@ package com.dyp1016.okr.common
 
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.dyp1016.okr.R
+import com.dyp1016.qvmvvm.core.base.BaseApp
 import com.dyp1016.qvmvvm.core.base.showToast
 
 fun AppCompatActivity.showCommonDialog(
@@ -16,11 +18,9 @@ fun AppCompatActivity.showCommonDialog(
             setTitle(title)
         }
 
-        if (confirm != null) {
-            setPositiveButton(confirm) { _, _ ->
-                if (onConfirm != null) {
-                    onConfirm()
-                }
+        setPositiveButton(confirm ?: BaseApp.context.getText(R.string.confirm)) { _, _ ->
+            if (onConfirm != null) {
+                onConfirm()
             }
         }
 

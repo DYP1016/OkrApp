@@ -12,7 +12,7 @@ abstract class BaseRetrofitClient {
         private const val TIME_OUT = 10
     }
 
-    private val okHttpClient: OkHttpClient
+    val okHttpClient: OkHttpClient
         get() {
             return OkHttpClient.Builder().run {
                 if (AppConfig.debugMode) {
