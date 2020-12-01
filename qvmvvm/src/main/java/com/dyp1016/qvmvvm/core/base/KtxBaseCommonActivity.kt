@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.greenrobot.eventbus.EventBus
 
-abstract class BaseCommonActivity : AppCompatActivity() {
+abstract class KtxBaseCommonActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
     protected lateinit var mContext: AppCompatActivity
 
@@ -26,6 +26,14 @@ abstract class BaseCommonActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    abstract fun onSuccess(code: Int)
+    abstract fun onError(code: Int)
+
+    open fun onShowRefresh(isShow: Boolean) {
+        //显示下拉加载框, 使用到的Activity实现该方法
+
     }
 
     open fun useEventBus(): Boolean {

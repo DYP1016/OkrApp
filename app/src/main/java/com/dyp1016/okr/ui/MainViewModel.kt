@@ -1,17 +1,14 @@
 package com.dyp1016.okr.ui
 
 import androidx.lifecycle.MutableLiveData
+import com.dyp1016.okr.base.BaseViewModel
 import com.dyp1016.okr.bean.User
 import com.dyp1016.okr.model.repository.MainRepository
-import com.dyp1016.qvmvvm.core.base.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 open class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
     var userData: MutableLiveData<User> = MutableLiveData()
-
-    private val _uiState = MutableLiveData<UiState>()
-    val uiState: MutableLiveData<UiState> get() = _uiState
 
     init {
         refresh()
@@ -26,7 +23,7 @@ open class MainViewModel(private val repository: MainRepository) : BaseViewModel
     fun test1() {
         launchOnUI {
             repository.test1()
-                .collect { _uiState.postValue(it) }
+                .collect { emitUiState(it) }
         }
     }
 

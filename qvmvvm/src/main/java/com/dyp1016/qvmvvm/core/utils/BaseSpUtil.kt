@@ -3,12 +3,12 @@ package com.dyp1016.qvmvvm.core.utils
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
-import com.dyp1016.qvmvvm.core.base.BaseApp
+import com.dyp1016.qvmvvm.core.base.KtxBaseApp
 
 abstract class BaseSpUtil {
     private val sharedPreferences: SharedPreferences by lazy {
         val spName = getSharePreferencesName()
-        val sp = BaseApp.context.getSharedPreferences(spName, Context.MODE_PRIVATE)
+        val sp = KtxBaseApp.context.getSharedPreferences(spName, Context.MODE_PRIVATE)
         sp
     }
     private val editor: Editor by lazy {

@@ -2,7 +2,7 @@ package com.dyp1016.test.api
 
 import com.dyp1016.okr.api.BaseRetrofitClient
 import com.dyp1016.okr.util.NetWorkUtils
-import com.dyp1016.qvmvvm.core.base.BaseApp
+import com.dyp1016.qvmvvm.core.base.KtxBaseApp
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
@@ -14,11 +14,11 @@ object WanRetrofitClient : BaseRetrofitClient() {
     val service by lazy { getService(WanService::class.java, WanService.BASE_URL) }
 
     private val cookieJar by lazy {
-        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(BaseApp.context))
+        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(KtxBaseApp.context))
     }
 
     override fun handleBuilder(builder: OkHttpClient.Builder) {
-        builder.cache(Cache(BaseApp.context.cacheDir, 10 * 1024 * 10))
+        builder.cache(Cache(KtxBaseApp.context.cacheDir, 10 * 1024 * 10))
             .cookieJar(cookieJar)
             .addInterceptor() { chain ->
                 var request = chain.request()

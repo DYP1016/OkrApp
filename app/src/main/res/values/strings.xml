@@ -2,6 +2,8 @@
     <string name="app_name">OkrApp</string>
 
     <string name="confirm">确认</string>
+    <string name="key_success">成功</string>
+    <string name="key_fail">失败</string>
 
     <string name="test_network_request">网络请求测试</string>
     <string name="test">测试</string>

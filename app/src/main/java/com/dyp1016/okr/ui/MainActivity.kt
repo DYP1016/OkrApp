@@ -1,8 +1,9 @@
 package com.dyp1016.okr.ui
 
 import com.dyp1016.okr.R
+import com.dyp1016.okr.base.BaseVMActivity
 import com.dyp1016.okr.databinding.ActivityMainBinding
-import com.dyp1016.qvmvvm.core.base.BaseVMActivity
+import com.dyp1016.qvmvvm.core.base.KtxBaseViewModel
 import com.dyp1016.test.ui.TestIndexActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,11 +25,11 @@ class MainActivity : BaseVMActivity() {
 
     }
 
-    override fun startObserve() {
-        viewModel.apply {
-            uiState.observe(this@MainActivity, {
-                showOrHideLoading(it.isLoading)
-            })
-        }
+    override fun startObserve(): KtxBaseViewModel {
+        return viewModel
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
     }
 }

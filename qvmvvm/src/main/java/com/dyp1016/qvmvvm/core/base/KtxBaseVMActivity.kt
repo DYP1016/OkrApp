@@ -5,24 +5,32 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseVMActivity : BaseCommonActivity() {
+abstract class KtxBaseVMActivity : KtxBaseCommonActivity() {
 
     protected inline fun <reified T : ViewDataBinding> binding(
         @LayoutRes resId: Int
     ): Lazy<T> = lazy {
         DataBindingUtil.setContentView<T>(this, resId).apply {
-            lifecycleOwner = this@BaseVMActivity
+            lifecycleOwner = this@KtxBaseVMActivity
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startObserve()
+
+        val viewModel = startObserve()
+        viewModel.uiState.observe(this) {
+            it.isLoading?.apply { showOrHideLoading(this) }
+            it.isRefresh?.apply { onShowRefresh(this) }
+            it.isSuccess?.apply { onSuccess(this) }
+            it.isError?.apply { onError(this) }
+        }
+
         initView()
         initData()
     }
 
     abstract fun initView()
     abstract fun initData()
-    abstract fun startObserve()
+    abstract fun startObserve(): KtxBaseViewModel
 }

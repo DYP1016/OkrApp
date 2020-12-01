@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dyp1016.okr.R
+import com.dyp1016.okr.base.BaseActivity
 import com.dyp1016.okr.databinding.ActivityTestIndexBinding
-import com.dyp1016.qvmvvm.core.base.BaseActivity
 
 class TestIndexActivity : BaseActivity<ActivityTestIndexBinding>() {
 

@@ -49,13 +49,13 @@ fun getCallerStackTraceElement(): StackTraceElement {
 
 fun showToast(info: String) {
     handler.post {
-        Toast.makeText(BaseApp.context, info, Toast.LENGTH_SHORT).show()
+        Toast.makeText(KtxBaseApp.context, info, Toast.LENGTH_SHORT).show()
     }
 }
 
 fun showToastL(info: String) {
     handler.post {
-        Toast.makeText(BaseApp.context, info, Toast.LENGTH_LONG).show()
+        Toast.makeText(KtxBaseApp.context, info, Toast.LENGTH_LONG).show()
     }
 }
 

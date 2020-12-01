@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment : Fragment() {
+abstract class KtxBaseFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

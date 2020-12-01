@@ -2,7 +2,7 @@ package com.dyp1016.test.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.dyp1016.qvmvvm.core.base.BaseViewModel
+import com.dyp1016.okr.base.BaseViewModel
 import com.dyp1016.qvmvvm.core.base.QvResult
 import com.dyp1016.test.repository.TestNetworkRequestRepository
 import kotlinx.coroutines.Dispatchers
@@ -15,30 +15,30 @@ class TestNetworkRequestViewModel(private val repository: TestNetworkRequestRepo
 
     class UiModel(
         val result: String? = null,
-        isLoading: Boolean = false,
-        isRefresh: Boolean = false,
-        isError: Int? = null
-    ) : BaseViewModel.UiState(isLoading, isRefresh, isError)
+    )
 
     fun test1() {
-        emitUiState(UiModel(isLoading = true))
-        viewModelScope.launch(Dispatchers.Main) {
-            val ret = repository.test1(1)
-            dealWithResult(ret)
+        runAsyncTask {
+            viewModelScope.launch(Dispatchers.Main) {
+                val ret = repository.test1(1)
+                dealWithResult(ret)
+            }
         }
     }
 
     fun test2() {
-        emitUiState(UiModel(isLoading = true))
-        repository.test2 {
-            dealWithResult(it)
+        runAsyncTask {
+            repository.test2 {
+                dealWithResult(it)
+            }
         }
     }
 
     fun test3() {
-        emitUiState(UiModel(isLoading = true))
-        viewModelScope.launch {
-            dealWithResult(repository.test3())
+        runAsyncTask {
+            viewModelScope.launch {
+                dealWithResult(repository.test3())
+            }
         }
     }
 
@@ -48,9 +48,9 @@ class TestNetworkRequestViewModel(private val repository: TestNetworkRequestRepo
 
     private fun <T> dealWithResult(result: QvResult<T>) {
         if (result.retSuccess()) {
-            emitUiState(UiModel(isLoading = false, result = result.result.toString()))
+            emitUiState(UiModel(result.result.toString()))
         } else {
-            emitUiState(UiModel(isLoading = false, isError = result.code))
+            showResult(result)
         }
     }
 }

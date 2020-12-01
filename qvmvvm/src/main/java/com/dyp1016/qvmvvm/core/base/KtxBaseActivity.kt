@@ -3,7 +3,7 @@ package com.dyp1016.qvmvvm.core.base
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<T : ViewBinding> : BaseCommonActivity() {
+abstract class KtxBaseActivity<T : ViewBinding> : KtxBaseCommonActivity() {
     lateinit var binding: T
 
     abstract fun getViewBinding(): T

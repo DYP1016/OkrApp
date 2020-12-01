@@ -2,10 +2,10 @@ package com.dyp1016.test.ui
 
 import android.widget.ArrayAdapter
 import com.dyp1016.okr.R
+import com.dyp1016.okr.base.BaseVMActivity
 import com.dyp1016.okr.common.showCommonDialog
-import com.dyp1016.okr.common.showResult
 import com.dyp1016.okr.databinding.ActivityTestNetworkRequestBinding
-import com.dyp1016.qvmvvm.core.base.BaseVMActivity
+import com.dyp1016.qvmvvm.core.base.KtxBaseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TestNetworkRequestActivity : BaseVMActivity() {
@@ -52,16 +52,12 @@ class TestNetworkRequestActivity : BaseVMActivity() {
         }
     }
 
-    override fun startObserve() {
-        viewModel.apply {
+    override fun startObserve(): KtxBaseViewModel {
+        return viewModel.apply {
             uiModel.observe(this@TestNetworkRequestActivity) {
-                showOrHideLoading(it.isLoading)
-
                 it.result?.also { it1 ->
                     showCommonDialog(it1)
                 }
-
-                it.isError?.apply { showResult(this) }
             }
         }
     }

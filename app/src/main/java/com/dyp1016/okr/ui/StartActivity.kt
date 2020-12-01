@@ -1,7 +1,7 @@
 package com.dyp1016.okr.ui
 
+import com.dyp1016.okr.base.BaseActivity
 import com.dyp1016.okr.databinding.ActivityStartBinding
-import com.dyp1016.qvmvvm.core.base.BaseActivity
 
 class StartActivity : BaseActivity<ActivityStartBinding>() {
 
@@ -10,7 +10,10 @@ class StartActivity : BaseActivity<ActivityStartBinding>() {
     }
 
     override fun initData() {
-        window.decorView.postDelayed({ startActivity(MainActivity::class.java) }, 1000)
+        window.decorView.postDelayed({
+            startActivity(MainActivity::class.java)
+            finish()
+        }, 1000)
     }
 
     override fun getViewBinding(): ActivityStartBinding {
