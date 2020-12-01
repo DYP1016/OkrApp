@@ -4,7 +4,6 @@ import com.dyp1016.okr.R
 import com.dyp1016.okr.databinding.ActivityMainBinding
 import com.dyp1016.qvmvvm.core.base.BaseVMActivity
 import com.dyp1016.test.ui.TestIndexActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseVMActivity() {
@@ -16,7 +15,7 @@ class MainActivity : BaseVMActivity() {
             userModel = viewModel
         }
 
-        main_bt_test.setOnClickListener {
+        binding.mainBtTest.setOnClickListener {
             startActivity(TestIndexActivity::class.java)
         }
     }

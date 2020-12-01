@@ -7,13 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dyp1016.okr.R
+import com.dyp1016.okr.databinding.ActivityTestIndexBinding
 import com.dyp1016.qvmvvm.core.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_test_index.*
 
-class TestIndexActivity : BaseActivity() {
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_test_index;
-    }
+class TestIndexActivity : BaseActivity<ActivityTestIndexBinding>() {
 
     override fun initView() {
         val list = arrayListOf(
@@ -23,13 +20,19 @@ class TestIndexActivity : BaseActivity() {
         val adapter = Adapter(list) { item ->
             startActivity(item.clazz)
         }
-        rv_list.adapter = adapter
-        rv_list.layoutManager = LinearLayoutManager(this)
 
+        binding.apply {
+            rvList.adapter = adapter
+            rvList.layoutManager = LinearLayoutManager(mContext)
+        }
     }
 
     override fun initData() {
 
+    }
+
+    override fun getViewBinding(): ActivityTestIndexBinding {
+        return ActivityTestIndexBinding.inflate(layoutInflater)
     }
 }
 

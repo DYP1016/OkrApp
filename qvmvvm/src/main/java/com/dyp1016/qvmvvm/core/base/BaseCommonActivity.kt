@@ -8,7 +8,7 @@ import org.greenrobot.eventbus.EventBus
 
 abstract class BaseCommonActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
-    protected lateinit var context: AppCompatActivity
+    protected lateinit var mContext: AppCompatActivity
 
     open fun showOrHideLoading(isShow: Boolean) {
         if (isShow) {
@@ -34,7 +34,7 @@ abstract class BaseCommonActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        context = this
+        mContext = this
         if (useEventBus()) {
             EventBus.getDefault().register(this)
         }
