@@ -47,6 +47,7 @@ class TestNetworkRequestViewModel(private val repository: TestNetworkRequestRepo
     }
 
     private fun <T> dealWithResult(result: QvResult<T>) {
+        showOrHideLoading(false)
         if (result.retSuccess()) {
             emitUiState(UiModel(result.result.toString()))
         } else {

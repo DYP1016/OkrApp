@@ -13,8 +13,8 @@ open class KtxBaseViewModel : ViewModel() {
     val uiState: MutableLiveData<UiState> get() = uiStateInner
 
     open class UiState(
-        val isLoading: Boolean? = false,
-        val isRefresh: Boolean? = false,
+        val isLoading: Boolean? = null,
+        val isRefresh: Boolean? = null,
         val isError: Int? = null,
         val isSuccess: Int? = null
     )
@@ -27,10 +27,6 @@ open class KtxBaseViewModel : ViewModel() {
         }
 
         block()
-
-        if (isShowLoading) {
-            showOrHideLoading(false)
-        }
     }
 
     fun showOrHideLoading(isShow: Boolean) {
