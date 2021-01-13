@@ -34,7 +34,7 @@ abstract class KtxBaseFragment : Fragment() {
         return Intent(context, clazz)
     }
 
-    fun <T : Activity> startActivity(
+    fun <T : Activity> startTargetActivity(
         clazz: Class<T>,
         code: Int? = null,
         callback: ((intent: Intent) -> Unit)? = null
