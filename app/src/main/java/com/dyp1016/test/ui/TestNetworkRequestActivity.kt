@@ -1,5 +1,6 @@
 package com.dyp1016.test.ui
 
+import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.dyp1016.okr.R
 import com.dyp1016.okr.base.BaseVMActivity
@@ -12,7 +13,7 @@ class TestNetworkRequestActivity : BaseVMActivity() {
     private val binding by binding<ActivityTestNetworkRequestBinding>(R.layout.activity_test_network_request)
     private val viewModel by viewModel<TestNetworkRequestViewModel>()
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         binding.run {
             testNetworkViewModel = viewModel
         }

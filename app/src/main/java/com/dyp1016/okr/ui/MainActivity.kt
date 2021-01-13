@@ -1,5 +1,6 @@
 package com.dyp1016.okr.ui
 
+import android.os.Bundle
 import com.dyp1016.okr.R
 import com.dyp1016.okr.base.BaseVMActivity
 import com.dyp1016.okr.databinding.ActivityMainBinding
@@ -11,7 +12,7 @@ class MainActivity : BaseVMActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val viewModel by viewModel<MainViewModel>()
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         binding.run {
             userModel = viewModel
         }

@@ -26,11 +26,11 @@ abstract class KtxBaseVMActivity : KtxBaseCommonActivity() {
             it.isError?.apply { onError(this) }
         }
 
-        initView()
+        initView(savedInstanceState)
         initData()
     }
 
-    abstract fun initView()
+    abstract fun initView(savedInstanceState: Bundle?)
     abstract fun initData()
     abstract fun startObserve(): KtxBaseViewModel
 }

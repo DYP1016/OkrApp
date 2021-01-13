@@ -1,5 +1,6 @@
 package com.dyp1016.test.ui
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.dyp1016.okr.databinding.ActivityTestIndexBinding
 
 class TestIndexActivity : BaseActivity<ActivityTestIndexBinding>() {
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         val list = arrayListOf(
             Item(R.string.test_network_request, TestNetworkRequestActivity::class.java)
         )

@@ -8,7 +8,7 @@ class MainContentAdapter(activity: FragmentActivity) :
     FragmentStateAdapter(activity) {
     private val fragmentList = listOf(
         MainHomeFragment(),
-        MainSettingsFragment(),
+        MainMessageFragment(),
         MainSettingsFragment()
     )
 

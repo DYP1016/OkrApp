@@ -7,7 +7,7 @@ abstract class KtxBaseActivity<T : ViewBinding> : KtxBaseCommonActivity() {
     lateinit var binding: T
 
     abstract fun getViewBinding(): T
-    abstract fun initView()
+    abstract fun initView(savedInstanceState: Bundle?)
     abstract fun initData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +15,7 @@ abstract class KtxBaseActivity<T : ViewBinding> : KtxBaseCommonActivity() {
         binding = getViewBinding()
         setContentView(binding.root)
 
-        initView()
+        initView(savedInstanceState)
         initData()
     }
 }
