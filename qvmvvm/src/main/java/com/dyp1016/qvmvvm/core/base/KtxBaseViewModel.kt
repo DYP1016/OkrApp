@@ -10,11 +10,13 @@ import kotlinx.coroutines.withContext
 
 open class KtxBaseViewModel : ViewModel() {
     private var uiStateInner = MutableLiveData<UiState>()
+    private var showLoadingStateInner = MutableLiveData<Boolean>();
+
     val uiState: MutableLiveData<UiState> get() = uiStateInner
+    val showLoadingState: MutableLiveData<Boolean> get() = showLoadingStateInner
+    val showRefreshState: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
 
     open class UiState(
-        val isLoading: Boolean? = null,
-        val isRefresh: Boolean? = null,
         val isError: Int? = null,
         val isSuccess: Int? = null
     )
@@ -30,11 +32,11 @@ open class KtxBaseViewModel : ViewModel() {
     }
 
     fun showOrHideLoading(isShow: Boolean) {
-        emitUiState(UiState(isLoading = isShow))
+        showLoadingStateInner.postValue(isShow)
     }
 
     fun showOrHideRefresh(isShow: Boolean) {
-        emitUiState(UiState(isRefresh = isShow))
+        showRefreshState.postValue(isShow)
     }
 
     fun showResult(code: Int) {
@@ -57,7 +59,7 @@ open class KtxBaseViewModel : ViewModel() {
         uiStateInner.postValue(state)
     }
 
-    fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
+    inline fun launchOnUI(crossinline block: suspend CoroutineScope.() -> Unit) {
         viewModelScope.launch { block() }
     }
 

@@ -33,7 +33,6 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    api rootProject.ext.dependencies["eventBus"]
     api rootProject.ext.dependencies["core-ktx"]
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["view_model_ktx"]

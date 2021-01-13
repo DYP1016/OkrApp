@@ -1,9 +1,10 @@
-package com.dyp1016.qvmvvm.core.base
+package com.dyp1016.qvmvvm.core.base.activity
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.dyp1016.qvmvvm.core.base.KtxBaseViewModel
 
 abstract class KtxBaseVMActivity : KtxBaseCommonActivity() {
 
@@ -20,10 +21,14 @@ abstract class KtxBaseVMActivity : KtxBaseCommonActivity() {
 
         val viewModel = startObserve()
         viewModel.uiState.observe(this) {
-            it.isLoading?.apply { showOrHideLoading(this) }
-            it.isRefresh?.apply { onShowRefresh(this) }
             it.isSuccess?.apply { onSuccess(this) }
             it.isError?.apply { onError(this) }
+        }
+        viewModel.showLoadingState.observe(this) {
+            it?.also { showOrHideLoading(it) }
+        }
+        viewModel.showRefreshState.observe(this) {
+            it?.also { onShowRefresh(it) }
         }
 
         initView(savedInstanceState)

@@ -1,4 +1,4 @@
-package com.dyp1016.qvmvvm.core.base
+package com.dyp1016.qvmvvm.core.base.activity
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding

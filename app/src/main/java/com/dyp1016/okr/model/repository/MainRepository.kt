@@ -14,10 +14,10 @@ class MainRepository : BaseRepository() {
     @ExperimentalCoroutinesApi
     suspend fun test1() = flow {
         kotlinx.coroutines.delay(3000)
-        emit(KtxBaseViewModel.UiState(isLoading = false))
+        emit(KtxBaseViewModel.UiState())
     }
         .onStart {
-            emit(KtxBaseViewModel.UiState(isLoading = true))
+            emit(KtxBaseViewModel.UiState())
         }
         .flowOn(Dispatchers.IO)
 }

@@ -1,4 +1,4 @@
-package com.dyp1016.okr.ui.tab
+package com.dyp1016.okr.ui.tab.setting
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

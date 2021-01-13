@@ -1,15 +1,15 @@
 package com.dyp1016.okr.base
 
-import com.dyp1016.okr.R
-import com.dyp1016.qvmvvm.core.base.KtxBaseVMActivity
-import com.dyp1016.qvmvvm.core.base.showToast
+import com.dyp1016.okr.common.showFail
+import com.dyp1016.okr.common.showSuccess
+import com.dyp1016.qvmvvm.core.base.activity.KtxBaseVMActivity
 
 abstract class BaseVMActivity : KtxBaseVMActivity() {
     override fun onSuccess(code: Int) {
-        showToast(getString(R.string.key_success))
+        showSuccess(code)
     }
 
     override fun onError(code: Int) {
-        showToast(getString(R.string.key_fail) + ": " + code)
+        showFail(code)
     }
 }

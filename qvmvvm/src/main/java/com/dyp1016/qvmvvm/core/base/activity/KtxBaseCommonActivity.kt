@@ -1,16 +1,18 @@
-package com.dyp1016.qvmvvm.core.base
+package com.dyp1016.qvmvvm.core.base.activity
 
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.greenrobot.eventbus.EventBus
+import com.dyp1016.qvmvvm.core.base.KtxBaseView
+import com.dyp1016.qvmvvm.core.base.logE
+import com.dyp1016.qvmvvm.core.base.showToastL
 
-abstract class KtxBaseCommonActivity : AppCompatActivity() {
+abstract class KtxBaseCommonActivity : AppCompatActivity(), KtxBaseView {
     private var progressDialog: ProgressDialog? = null
     protected lateinit var mContext: AppCompatActivity
 
-    open fun showOrHideLoading(isShow: Boolean) {
+    override fun showOrHideLoading(isShow: Boolean) {
         if (isShow) {
             if (progressDialog == null) {
                 progressDialog = ProgressDialog(this).apply {
@@ -28,32 +30,14 @@ abstract class KtxBaseCommonActivity : AppCompatActivity() {
         }
     }
 
-    abstract fun onSuccess(code: Int)
-    abstract fun onError(code: Int)
-
-    open fun onShowRefresh(isShow: Boolean) {
+    override fun onShowRefresh(isShow: Boolean) {
         //显示下拉加载框, 使用到的Activity实现该方法
 
-    }
-
-    open fun useEventBus(): Boolean {
-        return false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
-        if (useEventBus()) {
-            EventBus.getDefault().register(this)
-        }
-
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (useEventBus()) {
-            EventBus.getDefault().unregister(this)
-        }
     }
 
     inline fun startActivity(

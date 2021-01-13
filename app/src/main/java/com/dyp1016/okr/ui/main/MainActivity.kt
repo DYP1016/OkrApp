@@ -1,4 +1,4 @@
-package com.dyp1016.okr.ui
+package com.dyp1016.okr.ui.main
 
 import android.os.Bundle
 import com.dyp1016.okr.R
@@ -28,9 +28,5 @@ class MainActivity : BaseVMActivity() {
 
     override fun startObserve(): KtxBaseViewModel {
         return viewModel
-    }
-
-    override fun onBackPressed() {
-        moveTaskToBack(true)
     }
 }

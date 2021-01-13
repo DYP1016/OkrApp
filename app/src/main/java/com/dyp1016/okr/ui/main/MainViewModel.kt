@@ -1,4 +1,4 @@
-package com.dyp1016.okr.ui
+package com.dyp1016.okr.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import com.dyp1016.okr.base.BaseViewModel

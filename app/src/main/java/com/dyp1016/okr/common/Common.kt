@@ -34,3 +34,11 @@ fun AppCompatActivity.showCommonDialog(
 fun showResult(code: Int) {
     showToast("Fail, code: $code")
 }
+
+fun showSuccess(code: Int) {
+    showToast(KtxBaseApp.context.getString(R.string.key_success))
+}
+
+fun showFail(code: Int) {
+    showToast(KtxBaseApp.context.getString(R.string.key_fail) + ": " + code)
+}
