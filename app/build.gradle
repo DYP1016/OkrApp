@@ -51,7 +51,7 @@ dependencies {
 
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     kapt "com.android.databinding:compiler:$plugin_version"
 
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
@@ -60,4 +60,10 @@ dependencies {
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
     implementation 'com.github.iammert:ReadableBottomBar:0.2'
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:2.2.6"
+    kapt "androidx.room:room-compiler:2.2.6"
+    implementation "androidx.room:room-ktx:2.2.6"
+
 }

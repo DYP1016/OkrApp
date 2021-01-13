@@ -1,21 +1,27 @@
 package com.dyp1016.okr.model.repository
 
+import com.dyp1016.okr.database.DBManager
+import com.dyp1016.okr.database.entity.UserEntity
 import com.dyp1016.okr.model.api.BaseRepository
-import com.dyp1016.qvmvvm.core.base.QvResult
-import kotlinx.coroutines.delay
 
 class MainMessageRepository : BaseRepository() {
-
-    fun test1(callback: () -> Unit) {
-        Thread {
-            Thread.sleep(2000)
-            callback()
-        }.start()
+    suspend fun getAllUser(): List<UserEntity> {
+        return DBManager.userDao.getAll()
     }
 
-    suspend fun test2(): QvResult<String> {
-        delay(1000)
+    fun deleteUser(list: List<UserEntity>) {
+        for (user in list) {
+            user.delete()
+        }
+    }
 
-        return QvResult("success: ${(1..50).random()}")
+    fun update(list: List<UserEntity>) {
+        for (user in list) {
+            user.update()
+        }
+    }
+
+    fun createUser(user: UserEntity) {
+        user.save()
     }
 }
