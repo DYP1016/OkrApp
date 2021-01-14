@@ -24,4 +24,8 @@ class MainMessageRepository : BaseRepository() {
     fun createUser(user: UserEntity) {
         user.save()
     }
+
+    fun getUser(name: String): UserEntity? {
+        return DBManager.userDao.getUser(name)
+    }
 }

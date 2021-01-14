@@ -2,6 +2,8 @@ package com.dyp1016.okr.ui.tab.message
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import com.dyp1016.okr.R
 import com.dyp1016.okr.base.BaseVMFragment
 import com.dyp1016.okr.databinding.FragmentMainMessageBinding
@@ -15,7 +17,8 @@ class MainMessageFragment :
         "获取所有user",
         "增加一个user",
         "更新第一个user",
-        "删除第一个user"
+        "删除第一个user",
+        "查询账号"
     )
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -35,6 +38,15 @@ class MainMessageFragment :
                     }
                     "删除第一个user" -> {
                         viewModel.deleteFirstUser()
+                    }
+                    "查询账号" -> {
+                        context?.let {
+                            val edit = EditText(it)
+                            AlertDialog.Builder(it).apply {
+                                setView(edit)
+                                setPositiveButton(R.string.confirm) { _, _ -> viewModel.getUser(edit.text.toString()) }
+                            }.show()
+                        }
                     }
                 }
             }

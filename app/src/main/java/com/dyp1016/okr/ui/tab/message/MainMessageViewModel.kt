@@ -5,6 +5,7 @@ import com.dyp1016.okr.base.BaseViewModel
 import com.dyp1016.okr.database.entity.UserEntity
 import com.dyp1016.okr.model.repository.MainMessageRepository
 import com.dyp1016.qvmvvm.core.base.QvResult
+import com.dyp1016.qvmvvm.core.base.logE
 import com.dyp1016.qvmvvm.core.base.logI
 
 class MainMessageViewModel(private val repository: MainMessageRepository) : BaseViewModel() {
@@ -61,5 +62,10 @@ class MainMessageViewModel(private val repository: MainMessageRepository) : Base
 
             showOrHideLoading(false)
         }
+    }
+
+    fun getUser(name: String) {
+        val user = repository.getUser(name)
+        logE("get user: $user")
     }
 }

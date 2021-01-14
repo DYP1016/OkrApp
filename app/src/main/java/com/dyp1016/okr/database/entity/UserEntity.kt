@@ -10,7 +10,8 @@ data class UserEntity(
     var id: Long = 0,
     var name: String,
     var age: Int,
-    var sex: Int
+    var sex: Int,
+    var info: String? = null
 ) : BaseEntity() {
 
     override fun save() {

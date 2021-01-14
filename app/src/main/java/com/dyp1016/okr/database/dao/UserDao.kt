@@ -8,7 +8,7 @@ interface UserDao {
     @Query("select * from TB_USER order by age")
     fun getAll(): List<UserEntity>
 
-    @Query("select * from TB_USER where name=:name")
+    @Query("select * from TB_USER where name=:name limit 1")
     fun getUser(name: String): UserEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
