@@ -7,10 +7,15 @@ import com.dyp1016.okr.model.repository.MainMessageRepository
 import com.dyp1016.qvmvvm.core.base.QvResult
 import com.dyp1016.qvmvvm.core.base.logE
 import com.dyp1016.qvmvvm.core.base.logI
+import io.reactivex.Observer
+import io.reactivex.SingleObserver
+import io.reactivex.disposables.Disposable
 
 class MainMessageViewModel(private val repository: MainMessageRepository) : BaseViewModel() {
     val testResult: MutableLiveData<QvResult<String>> = MutableLiveData()
     val userList: MutableLiveData<List<UserEntity>> = MutableLiveData()
+
+    private var disposable: Disposable? = null
 
     fun getAll() {
         showOrHideLoading(true)
@@ -21,6 +26,46 @@ class MainMessageViewModel(private val repository: MainMessageRepository) : Base
             }
             showOrHideLoading(false)
         }
+
+        disposable?.dispose()
+
+        repository.getAllUser2()
+            .subscribe(object : Observer<List<UserEntity>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposable = d
+                }
+
+                override fun onNext(t: List<UserEntity>) {
+                    for (user in t) {
+                        logI(user.toString(), "rxjava user")
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                    logE(e)
+                }
+
+                override fun onComplete() {
+                    logI("onComplete")
+                }
+            })
+
+        repository.getAllUser3()
+            .subscribe(object : SingleObserver<List<UserEntity>> {
+                override fun onSubscribe(d: Disposable) {
+
+                }
+
+                override fun onSuccess(t: List<UserEntity>) {
+                    for (user in t) {
+                        logI(user.toString(), "rxjava single user")
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                }
+            })
+
     }
 
     fun createUser() {
