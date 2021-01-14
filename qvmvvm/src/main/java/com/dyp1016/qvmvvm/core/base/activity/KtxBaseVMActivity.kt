@@ -6,18 +6,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.dyp1016.qvmvvm.core.base.KtxBaseViewModel
 
-abstract class KtxBaseVMActivity : KtxBaseCommonActivity() {
-
-    protected inline fun <reified T : ViewDataBinding> binding(
-        @LayoutRes resId: Int
-    ): Lazy<T> = lazy {
-        DataBindingUtil.setContentView<T>(this, resId).apply {
-            lifecycleOwner = this@KtxBaseVMActivity
-        }
-    }
+abstract class KtxBaseVMActivity<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
+    KtxBaseCommonActivity() {
+    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = DataBindingUtil.setContentView<T>(this, layoutId).apply {
+            lifecycleOwner = this@KtxBaseVMActivity
+        }
 
         val viewModel = startObserve()
         viewModel.uiState.observe(this) {

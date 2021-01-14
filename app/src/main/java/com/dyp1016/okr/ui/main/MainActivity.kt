@@ -8,8 +8,7 @@ import com.dyp1016.qvmvvm.core.base.KtxBaseViewModel
 import com.dyp1016.test.ui.TestIndexActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseVMActivity() {
-    private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
+class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModel<MainViewModel>()
 
     override fun initView(savedInstanceState: Bundle?) {

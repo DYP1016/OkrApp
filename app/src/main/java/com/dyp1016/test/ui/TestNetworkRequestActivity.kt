@@ -9,8 +9,8 @@ import com.dyp1016.okr.databinding.ActivityTestNetworkRequestBinding
 import com.dyp1016.qvmvvm.core.base.KtxBaseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TestNetworkRequestActivity : BaseVMActivity() {
-    private val binding by binding<ActivityTestNetworkRequestBinding>(R.layout.activity_test_network_request)
+class TestNetworkRequestActivity :
+    BaseVMActivity<ActivityTestNetworkRequestBinding>(R.layout.activity_test_network_request) {
     private val viewModel by viewModel<TestNetworkRequestViewModel>()
 
     override fun initView(savedInstanceState: Bundle?) {
