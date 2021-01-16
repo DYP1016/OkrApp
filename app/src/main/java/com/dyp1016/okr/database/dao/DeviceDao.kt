@@ -1,7 +1,6 @@
 package com.dyp1016.okr.database.dao
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
 import com.dyp1016.okr.database.entity.DeviceEntity
 
 @Dao

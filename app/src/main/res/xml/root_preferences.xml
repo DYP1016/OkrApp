@@ -3,6 +3,7 @@
     <PreferenceCategory app:title="@string/messages_header">
 
         <EditTextPreference
+            app:icon="@drawable/ic_baseline_home_24"
             app:key="signature"
             app:title="@string/signature_title"
             app:useSimpleSummaryProvider="true" />
@@ -30,6 +31,29 @@
             app:summaryOn="@string/attachment_summary_on"
             app:title="@string/attachment_title" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+        <MultiSelectListPreference
+            app:defaultValue="@array/reply_values_2"
+            app:entries="@array/reply_2"
+            app:entryValues="@array/reply_values_2"
+            app:key="sync2"
+            app:title="@string/sync_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <SeekBarPreference
+            app:defaultValue="30"
+            app:key="sync_seek"
+            app:showSeekBarValue="true"
+            app:title="@string/sync_title" />
+
+        <Preference
+            app:dependency="sync"
+            app:key="sync_button"
+            app:summary="@string/sync_header"
+            app:title="@string/reply_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

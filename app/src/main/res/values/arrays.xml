@@ -9,4 +9,20 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="reply_values_2">
+        <item>reply1</item>
+        <item>reply2</item>
+        <item>reply3</item>
+        <item>reply4</item>
+        <item>reply5</item>
+    </string-array>
+
+    <string-array name="reply_2">
+        <item>reply_1</item>
+        <item>reply_2</item>
+        <item>reply_3</item>
+        <item>reply_4</item>
+        <item>reply_5</item>
+    </string-array>
 </resources>

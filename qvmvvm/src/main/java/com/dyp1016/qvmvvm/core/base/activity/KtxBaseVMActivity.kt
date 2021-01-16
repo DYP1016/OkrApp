@@ -17,18 +17,7 @@ abstract class KtxBaseVMActivity<T : ViewDataBinding>(@LayoutRes val layoutId: I
             lifecycleOwner = this@KtxBaseVMActivity
         }
 
-        val viewModel = startObserve()
-        viewModel.uiState.observe(this) {
-            it.isSuccess?.apply { onSuccess(this) }
-            it.isError?.apply { onError(this) }
-        }
-        viewModel.showLoadingState.observe(this) {
-            it?.also { showOrHideLoading(it) }
-        }
-        viewModel.showRefreshState.observe(this) {
-            it?.also { onShowRefresh(it) }
-        }
-
+        initViewModel(startObserve(), this)
         initView(savedInstanceState)
         initData()
     }

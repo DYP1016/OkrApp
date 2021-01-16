@@ -38,18 +38,7 @@ abstract class KtxBaseVMFragment<T : ViewDataBinding>(@LayoutRes val layoutId: I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = this
 
-        val viewModel = startObserve()
-        viewModel.uiState.observe(this) {
-            it.isSuccess?.apply { onSuccess(this) }
-            it.isError?.apply { onError(this) }
-        }
-        viewModel.showLoadingState.observe(this) {
-            it?.also { showOrHideLoading(it) }
-        }
-        viewModel.showRefreshState.observe(this) {
-            it?.also { onShowRefresh(it) }
-        }
-
+        initViewModel(startObserve(), this)
         initView(savedInstanceState)
         initData()
         super.onViewCreated(view, savedInstanceState)
